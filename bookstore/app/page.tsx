@@ -2,6 +2,41 @@
 
 import { useState } from "react";
 
+// Book cover images from Open Library (public domain / library-sourced images)
+const bookCovers: Record<string, string> = {
+  "The Midnight Library": "https://covers.openlibrary.org/b/id/10313767-L.jpg",
+  "Where the Crawdads Sing":
+    "https://covers.openlibrary.org/b/id/8362947-L.jpg",
+  "The Seven Husbands of Evelyn Hugo":
+    "https://covers.openlibrary.org/b/id/8354226-L.jpg",
+  "Atomic Habits": "https://covers.openlibrary.org/b/id/12539702-L.jpg",
+  "Project Hail Mary": "https://covers.openlibrary.org/b/id/11200092-L.jpg",
+  "The Four Winds": "https://covers.openlibrary.org/b/id/10675593-L.jpg",
+  "The Push": "https://covers.openlibrary.org/b/id/10540935-L.jpg",
+  "The Invisible Life of Addie LaRue":
+    "https://covers.openlibrary.org/b/id/10092261-L.jpg",
+  "Klara and the Sun": "https://covers.openlibrary.org/b/id/10648686-L.jpg",
+};
+
+function BookCoverImage({
+  title,
+  className = "",
+}: {
+  title: string;
+  className?: string;
+}) {
+  return (
+    <div className={`overflow-hidden bg-stone-200 ${className}`}>
+      <img
+        src={bookCovers[title] || ""}
+        alt={`Cover of ${title}`}
+        loading="lazy"
+        className="h-full w-full object-cover"
+      />
+    </div>
+  );
+}
+
 const featuredBooks = [
   { title: "The Midnight Library", author: "Matt Haig" },
   { title: "Where the Crawdads Sing", author: "Delia Owens" },
@@ -12,12 +47,42 @@ const featuredBooks = [
 ];
 
 const categories = [
-  { title: "Fiction", count: "2,456 books" },
-  { title: "Non-Fiction", count: "1,892 books" },
-  { title: "Mystery & Thriller", count: "1,234 books" },
-  { title: "Romance", count: "987 books" },
-  { title: "Science Fiction", count: "765 books" },
-  { title: "Biography", count: "654 books" },
+  {
+    title: "Fiction",
+    count: "2,456 books",
+    image:
+      "https://images.unsplash.com/photo-1474932430478-367dbb6832c1?w=660&h=270&fit=crop&auto=format&q=80",
+  },
+  {
+    title: "Non-Fiction",
+    count: "1,892 books",
+    image:
+      "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=660&h=270&fit=crop&auto=format&q=80",
+  },
+  {
+    title: "Mystery & Thriller",
+    count: "1,234 books",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=660&h=270&fit=crop&auto=format&q=80",
+  },
+  {
+    title: "Romance",
+    count: "987 books",
+    image:
+      "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?w=660&h=270&fit=crop&auto=format&q=80",
+  },
+  {
+    title: "Science Fiction",
+    count: "765 books",
+    image:
+      "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=660&h=270&fit=crop&auto=format&q=80",
+  },
+  {
+    title: "Biography",
+    count: "654 books",
+    image:
+      "https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?w=660&h=270&fit=crop&auto=format&q=80",
+  },
 ];
 
 const bestsellers = [
@@ -220,8 +285,17 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="relative min-h-[360px] overflow-hidden bg-[#2c2118] sm:h-[450px]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(143,91,45,.35),transparent_36%),linear-gradient(180deg,rgba(255,255,255,.04),rgba(0,0,0,.28))]" />
+      <section
+        id="hero"
+        className="relative min-h-[360px] overflow-hidden bg-[#2c2118] sm:h-[450px]"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1920&h=600&fit=crop&auto=format&q=80')",
+          backgroundSize: "cover",
+          backgroundPosition: "center 30%",
+        }}
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(143,91,45,.45),transparent_50%),linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.55))]" />
         <div className="relative mx-auto flex h-full max-w-[1160px] items-center px-4 py-10 sm:px-5 sm:py-0">
           <div className="max-w-[700px]">
             <h1 className="font-sans text-[40px] font-semibold leading-[0.95] tracking-[-0.05em] text-white sm:text-[64px] sm:leading-[0.92]">
@@ -254,7 +328,10 @@ export default function Home() {
                   key={book.title}
                   className="w-[170px] shrink-0 overflow-hidden rounded-[2px] bg-white transition duration-150 ease-out hover:-translate-y-[2px] hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] active:scale-[0.99] sm:w-[210px]"
                 >
-                  <Placeholder label="photo" className="h-[210px] w-full sm:h-[260px]" />
+                  <BookCoverImage
+                    title={book.title}
+                    className="h-[210px] w-full sm:h-[260px]"
+                  />
                   <div className="border-l border-r border-b border-black/5 bg-white px-2.5 pb-3 pt-2">
                     <h3 className="truncate font-sans text-[11px] font-semibold leading-tight text-stone-700 sm:text-[12px]">
                       {book.title}
@@ -278,20 +355,52 @@ export default function Home() {
           <div className="mt-10 grid gap-5">
             <div className="grid grid-cols-1 gap-3 overflow-hidden rounded-[6px] sm:grid-cols-3 sm:gap-0">
               {categories.slice(0, 3).map((category) => (
-                <Placeholder
+                <button
                   key={category.title}
-                  label={`${category.title}\n${category.count}`}
-                  className="h-[92px] whitespace-pre-line bg-[#4a423f] text-white/85 transition duration-150 ease-out hover:brightness-110 active:scale-[0.99] sm:h-[98px]"
-                />
+                  type="button"
+                  className="group relative h-[92px] overflow-hidden rounded-[6px] bg-[#4a423f] transition duration-150 ease-out hover:brightness-110 active:scale-[0.99] sm:h-[98px] sm:rounded-none"
+                >
+                  <img
+                    src={category.image}
+                    alt={category.title}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover opacity-50 transition duration-300 group-hover:opacity-70"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <span className="relative z-10 flex h-full flex-col items-center justify-center text-white/90">
+                    <span className="text-[15px] font-semibold">
+                      {category.title}
+                    </span>
+                    <span className="mt-1 text-[11px] text-white/60">
+                      {category.count}
+                    </span>
+                  </span>
+                </button>
               ))}
             </div>
             <div className="grid grid-cols-1 gap-3 overflow-hidden rounded-[6px] sm:grid-cols-3 sm:gap-0">
               {categories.slice(3).map((category) => (
-                <Placeholder
+                <button
                   key={category.title}
-                  label={`${category.title}\n${category.count}`}
-                  className="h-[92px] whitespace-pre-line bg-[#56423f] text-white/85 transition duration-150 ease-out hover:brightness-110 active:scale-[0.99] sm:h-[98px]"
-                />
+                  type="button"
+                  className="group relative h-[92px] overflow-hidden rounded-[6px] bg-[#56423f] transition duration-150 ease-out hover:brightness-110 active:scale-[0.99] sm:h-[98px] sm:rounded-none"
+                >
+                  <img
+                    src={category.image}
+                    alt={category.title}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover opacity-50 transition duration-300 group-hover:opacity-70"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <span className="relative z-10 flex h-full flex-col items-center justify-center text-white/90">
+                    <span className="text-[15px] font-semibold">
+                      {category.title}
+                    </span>
+                    <span className="mt-1 text-[11px] text-white/60">
+                      {category.count}
+                    </span>
+                  </span>
+                </button>
               ))}
             </div>
           </div>
@@ -310,7 +419,10 @@ export default function Home() {
                   key={book.title}
                   className="grid grid-cols-[56px_1fr_auto] items-center gap-3 sm:grid-cols-[74px_1fr_auto] sm:gap-4"
                 >
-                  <Placeholder label="photo" className="h-[74px] w-[56px] sm:h-[88px] sm:w-[64px]" />
+                  <BookCoverImage
+                    title={book.title}
+                    className="h-[74px] w-[56px] sm:h-[88px] sm:w-[64px]"
+                  />
                   <div>
                     <h3 className="font-sans text-[13px] font-semibold leading-tight text-stone-700 sm:text-[15px]">
                       {book.title}
@@ -332,14 +444,37 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className="pt-0 h-full lg:pt-2">
-            <Placeholder label="photo" className="h-[280px] w-full bg-[#a2a09d] sm:h-[360px] lg:h-[520px]" />
+          <div className="relative h-full min-h-[280px] overflow-hidden rounded-[4px] bg-[#a2a09d] pt-0 sm:min-h-[360px] lg:min-h-[520px] lg:pt-2">
+            <img
+              src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=700&fit=crop&auto=format&q=80"
+              alt="Bookshelf"
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-5 text-white">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/70">
+                Staff Picks
+              </p>
+              <p className="mt-1 text-[14px] font-semibold">
+                Curated by Our Booksellers
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#f3ede2] py-20">
-        <div className="mx-auto max-w-[1160px] px-4 text-center sm:px-5">
+      <section
+        className="relative bg-[#f3ede2] py-20"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1600&h=400&fit=crop&auto=format&q=80')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-[#f3ede2]/90" />
+        <div className="relative mx-auto max-w-[1160px] px-4 text-center sm:px-5">
           <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-[4px] bg-[#933b47] text-white">
             <Icon name="mail" className="h-5 w-5" />
           </div>
