@@ -134,7 +134,7 @@ export default function Home() {
               <ProductCard
                 key={color.name}
                 name={`Flash Air Pro — ${color.name}`}
-                price="THB 3,200"
+                price="THB 999"
                 image={color.image}
               />
             ))}

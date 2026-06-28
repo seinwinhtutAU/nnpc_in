@@ -4,12 +4,10 @@ import SectionHeader from "@/components/SectionHeader";
 import {
   Battery,
   Bluetooth,
-  Check,
   Droplets,
   Ear,
   Headphones,
   Shield,
-  X,
 } from "@/components/Icons";
 
 const features = [
@@ -47,15 +45,6 @@ const features = [
     description: "Three ear-tip sizes for a secure, all-day comfortable seal.",
     icon: Ear,
   },
-];
-
-const comparison = [
-  { feature: "Battery", flash: "40 hours", typical: "20–24 hours" },
-  { feature: "Bluetooth", flash: "5.4", typical: "5.0–5.2" },
-  { feature: "ANC", flash: true, typical: false },
-  { feature: "Waterproof", flash: "IPX7", typical: "IPX4" },
-  { feature: "Weight", flash: "5.2g", typical: "6–8g" },
-  { feature: "Price", flash: "THB 3,200", typical: "THB 5,000+" },
 ];
 
 export default function FeaturesPage() {
@@ -115,69 +104,6 @@ export default function FeaturesPage() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Comparison */}
-      <section className="border-y border-white/5 bg-charcoal/30 py-28">
-        <div className="mx-auto max-w-4xl px-6">
-          <SectionHeader
-            title="Flash vs. Typical Earbuds"
-            subtitle="See why Flash Air Pro stands out from the competition."
-          />
-          <div className="overflow-hidden rounded-2xl border border-white/10">
-            <div className="grid grid-cols-3 bg-charcoal/60 px-6 py-5 text-sm font-semibold uppercase tracking-wider text-soft-white">
-              <span>Feature</span>
-              <span className="text-gold">Flash Air Pro</span>
-              <span className="text-soft-white/60">Typical Earbuds</span>
-            </div>
-            {comparison.map((row, index) => (
-              <div
-                key={row.feature}
-                className={`grid grid-cols-3 items-center px-6 py-5 ${
-                  index % 2 === 0 ? "bg-matte/50" : "bg-charcoal/30"
-                } ${
-                  index !== comparison.length - 1
-                    ? "border-b border-white/10"
-                    : ""
-                }`}
-              >
-                <span className="font-medium text-soft-white/80">
-                  {row.feature}
-                </span>
-                <span className="flex items-center gap-2 font-semibold text-soft-white">
-                  {typeof row.flash === "boolean" ? (
-                    row.flash ? (
-                      <>
-                        <Check size={18} className="text-gold" /> Yes
-                      </>
-                    ) : (
-                      <>
-                        <X size={18} className="text-red-500" /> No
-                      </>
-                    )
-                  ) : (
-                    row.flash
-                  )}
-                </span>
-                <span className="flex items-center gap-2 text-soft-white/60">
-                  {typeof row.typical === "boolean" ? (
-                    row.typical ? (
-                      <>
-                        <Check size={18} /> Yes
-                      </>
-                    ) : (
-                      <>
-                        <X size={18} className="text-red-500/70" /> No
-                      </>
-                    )
-                  ) : (
-                    row.typical
-                  )}
-                </span>
-              </div>
-            ))}
           </div>
         </div>
       </section>

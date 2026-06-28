@@ -51,9 +51,9 @@ const boxContents = [
 ];
 
 const relatedProducts = [
-  { name: "Flash Air Pro — Pearl White", price: "THB 3,200", image: "/white/image1.png" },
-  { name: "Flash Air Pro — Rose Pink", price: "THB 3,200", image: "/pink/image1.png" },
-  { name: "Flash Air Pro — Matte Black", price: "THB 3,200", image: "/black/image1.png" },
+  { name: "Flash Air Pro — Pearl White", price: "THB 999", image: "/white/image1.png" },
+  { name: "Flash Air Pro — Rose Pink", price: "THB 999", image: "/pink/image1.png" },
+  { name: "Flash Air Pro — Matte Black", price: "THB 999", image: "/black/image1.png" },
 ];
 
 export default function ProductPage() {
@@ -65,7 +65,7 @@ export default function ProductPage() {
   );
 
   const currentThumbnails = colorThumbnails[selectedColor.id];
-  const price = version === "Pro" ? 3200 : 2600;
+  const price = version === "Pro" ? 999 : 799;
 
   return (
     <>
