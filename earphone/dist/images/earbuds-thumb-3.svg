@@ -1,9 +1,0 @@
-<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="200" height="200" rx="16" fill="#0B0B0B"/>
-  <g transform="translate(60, 50)">
-    <circle cx="40" cy="40" r="35" fill="#1C1C1E" stroke="#D4AF37" stroke-width="1.5"/>
-    <circle cx="40" cy="40" r="20" fill="#0B0B0B" stroke="#2C2C2E" stroke-width="1"/>
-    <circle cx="40" cy="40" r="8" fill="#3B82F6" fill-opacity="0.4"/>
-  </g>
-  <text x="100" y="150" text-anchor="middle" font-family="system-ui" font-size="10" fill="#888">Driver Detail</text>
-</svg>
